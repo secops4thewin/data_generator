@@ -1,0 +1,19 @@
+global:
+  output:
+    outputter: network
+    outputTemplate: raw
+    bufferBytes: 1
+    protocol: udp
+    endpoints:
+      - devo-ng-relay:13010
+samples:
+- name: paloAltoReplay
+  generator: replay
+  disabled: false
+  tokens:
+  - name: dateTime
+    type: timestamp
+    format: regex
+    token: (\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2})
+    replacement: '%Y/%m/%d %H:%M:%S'
+  fromSample: pan_inc_traffic.sample
