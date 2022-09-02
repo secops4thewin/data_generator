@@ -34,8 +34,8 @@ services:
   gogenPaloLogs:
       image: gogen
       volumes:
-        - events.yml:/tmp/events.yml
-        - pan_inc_traffic.sample:/tmp/pan_inc_traffic.sample
+        - ./events.yml:/tmp/events.yml
+        - ./pan_inc_traffic.sample:/tmp/pan_inc_traffic.sample
       command: bash -c "/wait && cd /tmp/ && ls /tmp && gogen -c /tmp/events.yml"
       environment:
         WAIT_HOSTS: devo-ng-relay:13010
