@@ -1,0 +1,281 @@
+global:
+  output:
+    outputter: network
+    outputTemplate: raw
+    bufferBytes: 1
+    protocol: udp
+    endpoints:
+      - devo-ng-relay:13010
+samples:
+- name: zabbixDataReplay
+  disabled: false
+  interval: 5
+  count: 10
+  tokens:
+    - name: apptype
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: db
+      - weight: 5
+        choice: app
+      - weight: 1
+        choice: web
+    - name: location
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: sg
+      - weight: 5
+        choice: au
+      - weight: 1
+        choice: in
+    - name: environment
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: prod
+      - weight: 5
+        choice: uat
+      - weight: 1
+        choice: dev
+    - name: hostid
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: servernumber
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: metric_value
+      format: template
+      type: random
+      replacement: int
+      lower: 20
+      upper: 100
+  lines:
+    - _raw: "{'itemid': '28534', 'name': 'Zabbix server: LLD queue', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '28249', 'name': 'Zabbix server: Preprocessing queue', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '25371', 'name': 'Zabbix server: Utilization of alert manager internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '29823', 'name': 'Zabbix server: Utilization of alert syncer internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23252', 'name': 'Zabbix server: Utilization of alerter internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '33026', 'name': 'Zabbix server: Utilization of availability manager internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23253', 'name': 'Zabbix server: Utilization of configuration syncer internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23255', 'name': 'Zabbix server: Utilization of discoverer data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23256', 'name': 'Zabbix server: Utilization of escalator internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '33027', 'name': 'Zabbix server: Utilization of history poller data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23257', 'name': 'Zabbix server: Utilization of history syncer internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23258', 'name': 'Zabbix server: Utilization of housekeeper internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23259', 'name': 'Zabbix server: Utilization of http poller data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23260', 'name': 'Zabbix server: Utilization of icmp pinger data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23262', 'name': 'Zabbix server: Utilization of java poller data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '28536', 'name': 'Zabbix server: Utilization of LLD manager internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '28538', 'name': 'Zabbix server: Utilization of LLD worker internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '39823', 'name': 'Zabbix server: Utilization of ODBC poller data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23264', 'name': 'Zabbix server: Utilization of poller data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '25667', 'name': 'Zabbix server: Utilization of preprocessing manager internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '25668', 'name': 'Zabbix server: Utilization of preprocessing worker internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23265', 'name': 'Zabbix server: Utilization of proxy poller data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23266', 'name': 'Zabbix server: Utilization of self-monitoring internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '35277', 'name': 'Zabbix server: Utilization of service manager internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23267', 'name': 'Zabbix server: Utilization of snmp trapper data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23664', 'name': 'Zabbix server: Utilization of task manager internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23268', 'name': 'Zabbix server: Utilization of timer internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23269', 'name': 'Zabbix server: Utilization of trapper data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '35275', 'name': 'Zabbix server: Utilization of trigger housekeeper internal processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23270', 'name': 'Zabbix server: Utilization of unreachable poller data collector processes, in %', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23271', 'name': 'Zabbix server: Queue over 10 minutes', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23272', 'name': 'Zabbix server: Queue', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23273', 'name': 'Zabbix server: Configuration cache, % used', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '33024', 'name': 'Zabbix server: Trend function cache, % unique requests', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '33025', 'name': 'Zabbix server: Trend function cache, % misses', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23620', 'name': 'Zabbix server: Value cache, % used', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23625', 'name': 'Zabbix server: Value cache hits', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23628', 'name': 'Zabbix server: Value cache misses', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23662', 'name': 'Zabbix server: Value cache operating mode', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '35276', 'name': 'Zabbix server: Version', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '1', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23274', 'name': 'Zabbix server: History write cache, % used', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23275', 'name': 'Zabbix server: History index cache, % used', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23276', 'name': 'Zabbix server: Trend write cache, % used', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '10073', 'name': 'Zabbix server: Number of processed numeric (float) values per second', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '10075', 'name': 'Zabbix server: Number of processed log values per second', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '10078', 'name': 'Zabbix server: Number of processed not supported values per second', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '10074', 'name': 'Zabbix server: Number of processed character values per second', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '10077', 'name': 'Zabbix server: Number of processed text values per second', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '10076', 'name': 'Zabbix server: Number of processed numeric (unsigned) values per second', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '23277', 'name': 'Zabbix server: Number of processed values per second', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '0', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+- name: CPU
+  disabled: false
+  interval: 5
+  count: 10
+  tokens:
+    - name: apptype
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: db
+      - weight: 5
+        choice: app
+      - weight: 1
+        choice: web
+    - name: location
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: sg
+      - weight: 5
+        choice: au
+      - weight: 1
+        choice: in
+    - name: environment
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: prod
+      - weight: 5
+        choice: uat
+      - weight: 1
+        choice: dev
+    - name: hostid
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: servernumber
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: metric_value
+      format: template
+      type: random
+      replacement: int
+      lower: 20
+      upper: 100
+  lines:
+    - _raw: "{'itemid': '42266', 'name': 'Load average (5m avg)', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+    - _raw: "{'itemid': '42266', 'name': 'Load average (15m avg)', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+- name: AvailMemory
+  disabled: false
+  interval: 5
+  count: 10
+  tokens:
+    - name: apptype
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: db
+      - weight: 5
+        choice: app
+      - weight: 1
+        choice: web
+    - name: location
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: sg
+      - weight: 5
+        choice: au
+      - weight: 1
+        choice: in
+    - name: environment
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: prod
+      - weight: 5
+        choice: uat
+      - weight: 1
+        choice: dev
+    - name: hostid
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: servernumber
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: metric_value
+      format: template
+      type: random
+      replacement: int
+      lower: 20
+      upper: 100
+  lines:
+    - _raw: "{'itemid': '42266', 'name': 'Available memory', 'hostid': '$location$-$environment$-$apptype$-$servernumber$', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
+- name: hostAvailable
+  disabled: false
+  interval: 5
+  count: 100
+  tokens:
+    - name: apptype
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: db
+      - weight: 5
+        choice: app
+      - weight: 1
+        choice: web
+    - name: location
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: sg
+      - weight: 5
+        choice: au
+      - weight: 1
+        choice: in
+    - name: environment
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 3
+        choice: prod
+      - weight: 5
+        choice: uat
+      - weight: 1
+        choice: dev
+    - name: hostid
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: servernumber
+      format: template
+      type: random
+      replacement: int
+      lower: 100
+      upper: 200
+    - name: metric_value
+      format: template
+      type: weightedChoice
+      weightedChoice:
+      - weight: 5
+        choice: 0
+      - weight: 1
+        choice: 1
+  lines:
+    - _raw: "{'itemid': '44094', 'name': 'Zabbix agent availability', 'hostid': '10540', 'value_type': '3', 'hostname': '$location$-$environment$-$apptype$-$servernumber$', 'metric_value': '$metric_value$'}"
